@@ -18,7 +18,7 @@ spring:
     type: redis
 
   redis:
-    host: eddi
+    host: study_team3
     port: 6379
 
   jpa:
