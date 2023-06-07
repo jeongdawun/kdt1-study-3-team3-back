@@ -1,4 +1,4 @@
-package kr.eddi.demo.redis;
+package kr.eddi.demo.account.redis;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
