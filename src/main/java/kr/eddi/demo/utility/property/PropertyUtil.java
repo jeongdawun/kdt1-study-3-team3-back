@@ -8,7 +8,7 @@ import org.springframework.core.env.Environment;
 
 @Configuration
 @RequiredArgsConstructor
-@PropertySource(value = { "classpath:${{ REDIS_CONFIG }}"})
+@PropertySource(value = { "classpath:file:/actions-runner/redis.properties"})
 public class PropertyUtil {
 
     final private Environment environment;
