@@ -18,8 +18,10 @@ spring:
     type: redis
 
   redis:
-    host: study_team3
-    port: 6379
+    host: ${{ CD_DEPLOY_CONFIG.spring.redis.host }}
+    port: ${{ CD_DEPLOY_CONFIG.spring.redis.port }}
+    username: eddi
+    password: ${{ CD_DEPLOY_CONFIG.spring.redis.password }}
 
   jpa:
     properties:
