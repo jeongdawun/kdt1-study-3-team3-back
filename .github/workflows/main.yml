@@ -34,6 +34,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
             
+      - name: Create redis.properties for CD Deploy
+        run: |
+          mkdir -p src/main/resources
+          cd src/main/resources
+          pwd
+          echo "${{ secrets.CD_DEPLOY_CONFIG }}" > redis.properties
+          cat redis.properties
+            
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
