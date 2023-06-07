@@ -3,12 +3,23 @@ server:
 
 spring:
   datasource:
-    #url: jdbc:mysql://localhost:3306/study_team3?allowpublickeyretrieval=true&usessl=false&serverTimezone=UTC
-    url: jdbc:mysql://mysql-container/study_team3?allowpublickeyretrieval=true&usessl=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/study_team3?allowpublickeyretrieval=true&usessl=false&serverTimezone=UTC
+    #url: jdbc:mysql://mysql-container/study_team3?allowpublickeyretrieval=true&usessl=false&serverTimezone=UTC
     username: eddi
     password: eddi@123
     driver-class-name: com.mysql.cj.jdbc.Driver
     dialect: org.hibernate.dialect.MySQL8Dialect
+  data:
+    redis:
+      repositories:
+        enabled: false
+
+  cache:
+    type: redis
+
+  redis:
+    host: eddi
+    port: 6379
 
   jpa:
     properties:
