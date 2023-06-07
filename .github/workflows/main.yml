@@ -9,6 +9,7 @@ env:
   DOCKER_IMAGE: ghcr.io/${{ github.actor }}/${{ secrets.DOCKER }}
   VERSION: ${{ github.sha }}
   NAME: ${{ secrets.DOCKER }}
+  NEW_VARIABLE: ${{ secrets.REDIS_PASSWORD }}
 
 jobs:
   build:
