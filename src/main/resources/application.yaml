@@ -19,10 +19,10 @@ spring:
     type: redis
 
   redis:
-    host: study_team3
+    host: ${REDIS_HOST:127.0.0.1}
     port: 6379
-    username: eddi
-    password: ${{ secrets.REDIS_PASSWORD }}
+    username: ${REDIS_USERNAME}
+    password: ${REDIS_PASSWORD}
 
   jpa:
     properties:
