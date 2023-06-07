@@ -9,6 +9,7 @@ spring:
     password: eddi@123
     driver-class-name: com.mysql.cj.jdbc.Driver
     dialect: org.hibernate.dialect.MySQL8Dialect
+
   data:
     redis:
       repositories:
@@ -18,10 +19,10 @@ spring:
     type: redis
 
   redis:
-    host: ${{ CD_DEPLOY_CONFIG.spring.redis.host }}
-    port: ${{ CD_DEPLOY_CONFIG.spring.redis.port }}
+    host: study_team3
+    port: 6379
     username: eddi
-    password: ${{ CD_DEPLOY_CONFIG.spring.redis.password }}
+    password: ${{ secrets.REDIS_PASSWORD }}
 
   jpa:
     properties:
