@@ -14,20 +14,20 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class RedisServiceImpl implements RedisService {
 
-    final private StringRedisTemplate stringRedisTemplate;
+    final private StringRedisTemplate redisTemplate;
     // 기본적으로 레디스를 사용하기 위한 템플릿이다.
 
     @Override
     public void setKeyAndValue(String token, Long accountId) {
         String accountIdToString = String.valueOf(accountId);
-        ValueOperations<String, String> value = stringRedisTemplate.opsForValue();
+        ValueOperations<String, String> value = redisTemplate.opsForValue();
         value.set(token, accountIdToString, Duration.ofMinutes(3));
         // 삼분 동안 유진된다.
     }
 
     @Override
     public Long getValueByKey(String token) {
-        ValueOperations<String, String> value = stringRedisTemplate.opsForValue();
+        ValueOperations<String, String> value = redisTemplate.opsForValue();
         String tmpAccountId = value.get(token);
         Long accountId;
 
@@ -42,7 +42,7 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public void deleteByKey(String token) {
-        stringRedisTemplate.delete(token);
+        redisTemplate.delete(token);
     }
 
     public Boolean isRefreshTokenExists(String token) {
