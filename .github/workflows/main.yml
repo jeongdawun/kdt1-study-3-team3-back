@@ -9,7 +9,7 @@ env:
   DOCKER_IMAGE: ghcr.io/${{ github.actor }}/${{ secrets.DOCKER }}
   VERSION: ${{ github.sha }}
   NAME: ${{ secrets.DOCKER }}
-  NEW_VARIABLE: ${{ secrets.REDIS_PASSWORD }}
+  REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
 
 jobs:
   build:
@@ -43,11 +43,11 @@ jobs:
           echo "${{ secrets.CD_DEPLOY_CONFIG }}" > redis.properties
           cat redis.properties
           
-      - name: Create application.yaml for CD Deploy
-        run: |
-          pwd
-          echo "${{ secrets.APP_YML }}" > src/main/resources/application.yaml
-          cat src/main/resources/application.yaml
+#       - name: Create application.yaml for CD Deploy
+#         run: |
+#           pwd
+#           echo "${{ secrets.APP_YML }}" > src/main/resources/application.yaml
+#           cat src/main/resources/application.yaml
             
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
