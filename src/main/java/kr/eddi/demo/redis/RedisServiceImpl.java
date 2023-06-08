@@ -11,14 +11,11 @@ import java.time.Duration;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class RedisServiceImpl implements RedisService {
 
     final private StringRedisTemplate redisTemplate;
     // 기본적으로 레디스를 사용하기 위한 템플릿이다.
-
-    public RedisServiceImpl(StringRedisTemplate redisTemplate) {
-        this.redisTemplate = redisTemplate;
-    }
 
     @Override
     public void setKeyAndValue(String token, Long accountId) {
