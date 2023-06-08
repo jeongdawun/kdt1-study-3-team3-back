@@ -1,4 +1,4 @@
-package kr.eddi.demo.account.redis;
+package kr.eddi.demo.redis;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,20 +14,20 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class RedisServiceImpl implements RedisService {
 
-    final private StringRedisTemplate redisTemplate;
+    final private StringRedisTemplate stringRedisTemplate;
     // 기본적으로 레디스를 사용하기 위한 템플릿이다.
 
     @Override
     public void setKeyAndValue(String token, Long accountId) {
         String accountIdToString = String.valueOf(accountId);
-        ValueOperations<String, String> value = redisTemplate.opsForValue();
+        ValueOperations<String, String> value = stringRedisTemplate.opsForValue();
         value.set(token, accountIdToString, Duration.ofMinutes(3));
         // 삼분 동안 유진된다.
     }
 
     @Override
     public Long getValueByKey(String token) {
-        ValueOperations<String, String> value = redisTemplate.opsForValue();
+        ValueOperations<String, String> value = stringRedisTemplate.opsForValue();
         String tmpAccountId = value.get(token);
         Long accountId;
 
@@ -42,7 +42,7 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public void deleteByKey(String token) {
-        redisTemplate.delete(token);
+        stringRedisTemplate.delete(token);
     }
 
     public Boolean isRefreshTokenExists(String token) {

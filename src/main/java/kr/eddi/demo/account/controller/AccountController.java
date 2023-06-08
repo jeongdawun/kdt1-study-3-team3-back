@@ -3,7 +3,7 @@ package kr.eddi.demo.account.controller;
 import kr.eddi.demo.account.controller.form.*;
 import kr.eddi.demo.account.entity.RoleType;
 import kr.eddi.demo.account.service.AccountService;
-import kr.eddi.demo.account.redis.RedisService;
+import kr.eddi.demo.redis.RedisService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;

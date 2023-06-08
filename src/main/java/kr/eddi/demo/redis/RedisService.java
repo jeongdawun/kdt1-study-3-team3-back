@@ -1,4 +1,4 @@
-package kr.eddi.demo.account.redis;
+package kr.eddi.demo.redis;
 
 public interface RedisService {
 
