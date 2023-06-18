@@ -30,12 +30,22 @@ public class AccountController {
     }
 
     @PostMapping("/login")
-    public String accountLogin(@RequestBody AccountLoginRequestForm accountLoginRequestForm) {
-
-        String userToken = accountService.login(accountLoginRequestForm);
-        Long accountID= accountService.findAccountIdByEmail(accountLoginRequestForm.getEmail());
-        redisService.setKeyAndValue(userToken,accountID);
-        return userToken;
+    public String accountLogin(@RequestBody AccountLoginRequestForm accountLoginRequestForm){
+//        String userToken = accountService.login(accountLoginRequestForm);
+//        Long accountID= accountService.findAccountIdByEmail(accountLoginRequestForm.getEmail());
+//        redisService.setKeyAndValue(userToken,accountID);
+//        return userToken;
+        try {
+            String userToken = accountService.login(accountLoginRequestForm);
+            Long accountID = accountService.findAccountIdByEmail(accountLoginRequestForm.getEmail());
+            redisService.setKeyAndValue(userToken, accountID);
+            System.out.println("userToken" + userToken);
+            return userToken;
+        } catch (RuntimeException e) {
+            String errorMessage = "가입된 정보가 없습니다.";
+            System.out.println("errorMessage" + errorMessage);
+            return "";
+        }
     }
     @PostMapping("/businessCheck")
     public Boolean isBusiness(@RequestBody BusinessCheckRequestForm requestForm){
@@ -61,5 +71,17 @@ public class AccountController {
 
         AccountMyPageResponseForm accountMyPageResponseForm = new AccountMyPageResponseForm(email, roleType);
         return accountMyPageResponseForm;
+    }
+
+    @PostMapping("/get-user-accountId")
+    public Long getAccountId(@RequestBody BusinessCheckRequestForm requestForm){
+        String userToken = requestForm.getUserToken();
+        Long accountId = redisService.getValueByKey(userToken);
+        System.out.println("accountId: " + accountId);
+        if(accountId == null) {
+            return 0L;
+        } else {
+            return accountId;
+        }
     }
 }

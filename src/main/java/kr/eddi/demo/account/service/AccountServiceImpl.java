@@ -92,8 +92,11 @@ public class AccountServiceImpl implements AccountService{
                 userTokenRepository.save(userToken, account.getId());
                 return userToken;
             }
-        }
 
+            if(!requestForm.getPassword().equals(maybeAccount.get().getPassword())){
+                throw new RuntimeException("예외 발생!");
+            }
+        }
         return null;
     }
 
